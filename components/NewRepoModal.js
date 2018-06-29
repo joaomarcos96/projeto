@@ -11,6 +11,10 @@ import {
 
 
 export default class NewRepoModal extends Component {
+  state = {
+    newRepoText: '',
+  };
+
   render(){
     return (
       <Modal animationType="fade" transparent={true} visible={this.props.visible} onRequestClose={() => null}>
@@ -25,6 +29,8 @@ export default class NewRepoModal extends Component {
               style={styles.boxInput}
               underlineColorAndroid="rgba(0, 0, 0, 0)"
               placeholder="organização/repositório"
+              value={this.state.newRepoText}
+              onChangeText={text => this.setState({ newRepoText: text })}
             />
 
             <View style={styles.buttonContainer}>
@@ -39,7 +45,7 @@ export default class NewRepoModal extends Component {
 
               <TouchableOpacity
                 style={[styles.button, styles.submitButton]}
-                onPress={() => {}}
+                onPress={() => this.props.onAdd(this.state.newRepoText)}
               >
                 <Text style={styles.buttonText}>
                   Adicionar
